@@ -1,0 +1,33 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: RANDOM-API
+  boot:
+    admin:
+      client:
+        url: http://localhost:1111/
+        
+  zipkin: 
+       base-url:http://localhost:1111          
+        
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+ 
+  tracing:
+    sampling:
+      probability: 1.0
+      
+logging:
+    pattern:
+       level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+        
+  
